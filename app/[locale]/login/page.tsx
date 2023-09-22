@@ -27,6 +27,7 @@ export default async function LoginUsername() {
           type="text"
           name="user"
           id="user"
+          required
           placeholder="Discord|Client|595470552068521984"
         />
         <Button type="submit">{t('login.next')}</Button>

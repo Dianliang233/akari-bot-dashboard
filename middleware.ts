@@ -1,7 +1,9 @@
 import { createI18nMiddleware } from 'next-international/middleware'
 import { NextRequest } from 'next/server'
 
-const I18nMiddleware = createI18nMiddleware(['zh-hans', 'en'], 'zh-hans', {
+const I18nMiddleware = createI18nMiddleware({
+  locales: ['zh-hans', 'en'],
+  defaultLocale: 'en',
   urlMappingStrategy: 'rewrite',
 })
 
