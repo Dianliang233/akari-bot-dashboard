@@ -1,11 +1,11 @@
-import { Input } from '@/app/ui/input'
-import { Label } from '@/app/ui/label'
-import { Button } from '@/app/ui/button'
-import { getI18n } from '@/app/locale/server'
-import { SignJWT, jwtVerify } from 'jose'
+import { Input } from '@/ui/input'
+import { Label } from '@/ui/label'
+import { Button } from '@/ui/button'
+import { getI18n } from '@/locale/server'
+import { SignJWT } from 'jose'
 import { randomBytes } from 'crypto'
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { validateUserState } from '@/routers/util/validateUserState'
 
 export default async function LoginToken({
   searchParams,
@@ -17,33 +17,22 @@ export default async function LoginToken({
   async function handleSubmit(data: FormData) {
     'use server'
 
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET!)
+    const result = await validateUserState({
+      tokenSigned: data.get('token') as string,
+      codeSigned: data.get('codeSigned') as string,
+      user: data.get('user') as string,
+      code: data.get('code') as string,
+    })
 
-    let codeDecrypted, tokenDecrypted
-    try {
-      codeDecrypted = await jwtVerify(data.get('codeSigned') as string, secret)
-    } catch {
-      redirect('/login/error/codeSignInvalid')
+    if (result.valid) {
+      redirect(
+        `/dashboard?tokenSigned=${data.get('token') as string}&codeSigned=${
+          data.get('codeSigned') as string
+        }&code=${data.get('code') as string}&user=${data.get('user') as string}`
+      )
+    } else {
+      redirect('/login/error/' + result.reason)
     }
-    try {
-      tokenDecrypted = await jwtVerify(data.get('token') as string, secret)
-    } catch {
-      redirect('/login/error/tokenSignInvalid')
-    }
-
-    if (codeDecrypted.payload.code !== data.get('code')) {
-      redirect('/login/error/codeMismatchSigned')
-    } else if (tokenDecrypted.payload.code !== data.get('code')) {
-      redirect('/login/error/codeMismatchToken')
-    } else if (tokenDecrypted.payload.senderId !== data.get('user')) {
-      redirect('/login/error/userMismatch')
-    }
-
-    redirect(
-      `/dashboard?token=${data.get('token') as string}&code=${
-        data.get('codeSigned') as string
-      }`
-    )
   }
 
   const t = await getI18n()

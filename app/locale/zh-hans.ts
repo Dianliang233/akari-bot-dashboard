@@ -1,6 +1,5 @@
 export default {
   hello: '你好',
-  home: '主页',
   login: {
     title: '登录',
     next: '下一步',
@@ -18,6 +17,12 @@ export default {
       userMismatch:
         '请确保您输入的 ID 和您请求密钥时使用的账号一致。（{error}）',
       retry: '重试',
+    },
+  },
+  pages: {
+    home: {
+      title: '主页',
+      whoIsThis: '我是谁',
     },
   },
 } as const

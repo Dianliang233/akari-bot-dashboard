@@ -1,4 +1,4 @@
-import { getI18n } from '@/app/locale/server'
+import { getI18n } from '@/locale/server'
 import { ReactNode } from 'react'
 import SideBar from './SideBar'
 
@@ -8,7 +8,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen grid-cols-4 grid">
       <SideBar />
-      <div className="col-span-3">{children}</div>
+      <div className="col-span-3 m-6">{children}</div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import Image from 'next/image'
-import Logo from '@/app/assets/logo.svg'
+import Logo from '@/assets/logo.svg'
 import Icon from '@mdi/react'
 import {
   mdiWeb,

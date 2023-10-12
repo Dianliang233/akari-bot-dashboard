@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
-import Header from '@/app/template/Header'
-import Footer from '@/app/template/Footer'
+import Header from '@/template/Header'
+import Footer from '@/template/Footer'
 import Providers from './providers'
 
 export default function SubLayout({

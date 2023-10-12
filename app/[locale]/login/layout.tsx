@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import BannerImage from '@/app/assets/banner.png'
-import { getI18n } from '@/app/locale/server'
+import BannerImage from '@/assets/banner.png'
+import { getI18n } from '@/locale/server'
 import { ReactNode } from 'react'
 
 export default async function Layout({ children }: { children: ReactNode }) {

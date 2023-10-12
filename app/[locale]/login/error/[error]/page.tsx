@@ -1,10 +1,5 @@
-import { Input } from '@/app/ui/input'
-import { Label } from '@/app/ui/label'
-import { Button } from '@/app/ui/button'
-import { getI18n } from '@/app/locale/server'
-import { SignJWT, jwtVerify } from 'jose'
-import { randomBytes } from 'crypto'
-import { redirect } from 'next/navigation'
+import { Button } from '@/ui/button'
+import { getI18n } from '@/locale/server'
 import Link from 'next/link'
 
 export default async function LoginError({

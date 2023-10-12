@@ -25,4 +25,10 @@ export default {
       retry: 'Retry',
     },
   },
+  pages: {
+    home: {
+      title: 'Home',
+      whoIsThis: 'Who is this?',
+    },
+  },
 } as const

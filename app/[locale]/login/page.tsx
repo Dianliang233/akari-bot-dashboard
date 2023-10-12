@@ -1,7 +1,7 @@
-import { Input } from '@/app/ui/input'
-import { Label } from '@/app/ui/label'
-import { Button } from '@/app/ui/button'
-import { getI18n } from '@/app/locale/server'
+import { Input } from '@/ui/input'
+import { Label } from '@/ui/label'
+import { Button } from '@/ui/button'
+import { getI18n } from '@/locale/server'
 import { redirect } from 'next/navigation'
 
 export default async function LoginUsername() {

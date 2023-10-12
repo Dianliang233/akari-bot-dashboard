@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode } from 'react'
-import { I18nProviderClient } from '@/app/locale/client'
+import { I18nProviderClient } from '@/locale/client'
 
 export default function Providers({
   children,
